@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 const DepartmentDashboard = () => {
   const [isAddUserOpen, setIsAddUserOpen] = useState(false);
   const [uploadMethod, setUploadMethod] = useState<"manual" | "bulk">("manual");
+  const [userType, setUserType] = useState<"student" | "supervisor">("student");
   const { toast } = useToast();
 
   const handleAddUser = (e: React.FormEvent) => {
@@ -199,63 +200,118 @@ const DepartmentDashboard = () => {
 
             <TabsContent value="manual">
               <form onSubmit={handleAddUser}>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
                   <div>
-                    <Label htmlFor="studentId">Student ID</Label>
-                    <Input name="studentId" placeholder="e.g., CS2024001" required />
-                  </div>
-                  <div>
-                    <Label htmlFor="name">Student Name</Label>
-                    <Input name="name" placeholder="e.g., John Doe" required />
-                  </div>
-                  <div>
-                    <Label htmlFor="gender">Gender</Label>
-                    <Select name="gender" required>
+                    <Label htmlFor="userType">User Type</Label>
+                    <Select value={userType} onValueChange={(value) => setUserType(value as "student" | "supervisor")} required>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select gender" />
+                        <SelectValue placeholder="Select user type" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="male">Male</SelectItem>
-                        <SelectItem value="female">Female</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        <SelectItem value="student">Student</SelectItem>
+                        <SelectItem value="supervisor">Supervisor</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
-                  <div>
-                    <Label htmlFor="programmeLevel">Programme Level</Label>
-                    <Select name="programmeLevel" required>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select programme level" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="masters">Masters</SelectItem>
-                        <SelectItem value="phd">PhD</SelectItem>
-                        <SelectItem value="postdoc">Post-Doctorate</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <Label htmlFor="email">Email</Label>
-                    <Input name="email" type="email" placeholder="john.doe@university.edu" required />
-                  </div>
-                  <div>
-                    <Label htmlFor="programmeName">Programme Name</Label>
-                    <Input name="programmeName" placeholder="e.g., Computer Science" required />
-                  </div>
-                  <div className="col-span-2">
-                    <Label htmlFor="thesisTopic">Thesis Topic</Label>
-                    <Input name="thesisTopic" placeholder="e.g., Machine Learning in Healthcare" />
-                  </div>
-                  <div>
-                    <Label htmlFor="contactNumber">Contact Number</Label>
-                    <Input name="contactNumber" placeholder="e.g., +1234567890" required />
-                  </div>
+
+                  {userType === "student" && (
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="studentId">Student ID</Label>
+                        <Input name="studentId" placeholder="e.g., CS2024001" required />
+                      </div>
+                      <div>
+                        <Label htmlFor="name">Student Name</Label>
+                        <Input name="name" placeholder="e.g., John Doe" required />
+                      </div>
+                      <div>
+                        <Label htmlFor="gender">Gender</Label>
+                        <Select name="gender" required>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select gender" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="male">Male</SelectItem>
+                            <SelectItem value="female">Female</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="programmeLevel">Programme Level</Label>
+                        <Select name="programmeLevel" required>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select programme level" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="masters">Masters</SelectItem>
+                            <SelectItem value="phd">PhD</SelectItem>
+                            <SelectItem value="postdoc">Post-Doctorate</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="email">Email</Label>
+                        <Input name="email" type="email" placeholder="john.doe@university.edu" required />
+                      </div>
+                      <div>
+                        <Label htmlFor="programmeName">Programme Name</Label>
+                        <Input name="programmeName" placeholder="e.g., Computer Science" required />
+                      </div>
+                      <div className="col-span-2">
+                        <Label htmlFor="thesisTopic">Thesis Topic</Label>
+                        <Input name="thesisTopic" placeholder="e.g., Machine Learning in Healthcare" />
+                      </div>
+                      <div>
+                        <Label htmlFor="contactNumber">Contact Number</Label>
+                        <Input name="contactNumber" placeholder="e.g., +1234567890" required />
+                      </div>
+                    </div>
+                  )}
+
+                  {userType === "supervisor" && (
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="staffId">Staff ID</Label>
+                        <Input name="staffId" placeholder="e.g., STF2024001" required />
+                      </div>
+                      <div>
+                        <Label htmlFor="staffName">Staff Name</Label>
+                        <Input name="staffName" placeholder="e.g., Dr. Jane Smith" required />
+                      </div>
+                      <div>
+                        <Label htmlFor="gender">Gender</Label>
+                        <Select name="gender" required>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select gender" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="male">Male</SelectItem>
+                            <SelectItem value="female">Female</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="email">Email</Label>
+                        <Input name="email" type="email" placeholder="jane.smith@university.edu" required />
+                      </div>
+                      <div className="col-span-2">
+                        <Label htmlFor="researchArea">Research Area</Label>
+                        <Input name="researchArea" placeholder="e.g., Machine Learning, Computer Vision" required />
+                      </div>
+                      <div>
+                        <Label htmlFor="contactNumber">Contact Number</Label>
+                        <Input name="contactNumber" placeholder="e.g., +1234567890" required />
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <DialogFooter className="mt-6">
                   <Button type="button" variant="outline" onClick={() => setIsAddUserOpen(false)}>
                     Cancel
                   </Button>
-                  <Button type="submit">Add User</Button>
+                  <Button type="submit">Add {userType === "student" ? "Student" : "Supervisor"}</Button>
                 </DialogFooter>
               </form>
             </TabsContent>
