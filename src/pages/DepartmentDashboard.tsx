@@ -199,31 +199,56 @@ const DepartmentDashboard = () => {
 
             <TabsContent value="manual">
               <form onSubmit={handleAddUser}>
-                <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="name">Full Name</Label>
+                    <Label htmlFor="studentId">Student ID</Label>
+                    <Input name="studentId" placeholder="e.g., CS2024001" required />
+                  </div>
+                  <div>
+                    <Label htmlFor="name">Student Name</Label>
                     <Input name="name" placeholder="e.g., John Doe" required />
                   </div>
                   <div>
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input name="email" type="email" placeholder="john.doe@university.edu" required />
-                  </div>
-                  <div>
-                    <Label htmlFor="role">Role</Label>
-                    <Select name="role" required>
+                    <Label htmlFor="gender">Gender</Label>
+                    <Select name="gender" required>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select role" />
+                        <SelectValue placeholder="Select gender" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="student">Student</SelectItem>
-                        <SelectItem value="supervisor">Supervisor</SelectItem>
-                        <SelectItem value="coordinator">Coordinator</SelectItem>
+                        <SelectItem value="male">Male</SelectItem>
+                        <SelectItem value="female">Female</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div>
-                    <Label htmlFor="program">Program</Label>
-                    <Input name="program" placeholder="e.g., PhD Computer Science" />
+                    <Label htmlFor="programmeLevel">Programme Level</Label>
+                    <Select name="programmeLevel" required>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select programme level" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="masters">Masters</SelectItem>
+                        <SelectItem value="phd">PhD</SelectItem>
+                        <SelectItem value="postdoc">Post-Doctorate</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="email">Email</Label>
+                    <Input name="email" type="email" placeholder="john.doe@university.edu" required />
+                  </div>
+                  <div>
+                    <Label htmlFor="programmeName">Programme Name</Label>
+                    <Input name="programmeName" placeholder="e.g., Computer Science" required />
+                  </div>
+                  <div className="col-span-2">
+                    <Label htmlFor="thesisTopic">Thesis Topic</Label>
+                    <Input name="thesisTopic" placeholder="e.g., Machine Learning in Healthcare" />
+                  </div>
+                  <div>
+                    <Label htmlFor="contactNumber">Contact Number</Label>
+                    <Input name="contactNumber" placeholder="e.g., +1234567890" required />
                   </div>
                 </div>
                 <DialogFooter className="mt-6">
